@@ -2,14 +2,31 @@ class App extends React.Component {
   constructor(props) {
     super(props);
     this.handleClick = this.handleClick.bind(this);
+    this.handleSearch = this.handleSearch.bind(this);
     this.state = {
-      video: exampleVideoData[0]
+      video: exampleVideoData[0],
+      videos: exampleVideoData
     };
+    this.handleSearch('rick roll');//, (data) => {
+    //   this.setState({
+    //     video: data[0],
+    //     videos: data,
+    //   });
+    // });
   }
 
   handleClick(key) {
     this.setState({
       video: key
+    });
+  }
+
+  handleSearch(q) {
+    this.props.searchYouTube({key: YOUTUBE_API_KEY, query: q, max: 5}, (data) => {
+      this.setState({
+        video: data[0],
+        videos: data,
+      });
     });
   }
 
@@ -19,7 +36,7 @@ class App extends React.Component {
       <div>
         <nav className="navbar">
           <div className="col-md-6 offset-md-3">
-            <div><h5><em>search</em> view goes here</h5></div>
+            <Search handleSearch={this.handleSearch}/>
           </div>
         </nav>
         <div className="row">
@@ -27,7 +44,7 @@ class App extends React.Component {
             <VideoPlayer video={this.state.video}/>
           </div>
           <div className="col-md-5">
-            <VideoList videos={exampleVideoData} handleClick={this.handleClick} />
+            <VideoList videos={this.state.videos} handleClick={this.handleClick} />
           </div>
         </div>
       </div>
@@ -35,6 +52,7 @@ class App extends React.Component {
 
   }
 }
+
 
 // In the ES6 spec, files are "modules" and do not share a top-level scope
 // `var` declarations will only exist globally where explicitly defined
