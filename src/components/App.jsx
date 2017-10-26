@@ -1,13 +1,13 @@
 class App extends React.Component {
   constructor(props) {
     super(props);
+    this.handleClick = this.handleClick.bind(this);
     this.state = {
       video: exampleVideoData[0]
     };
   }
 
   handleClick(key) {
-    console.log('hi');
     this.setState({
       video: key
     });
