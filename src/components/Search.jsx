@@ -1,6 +1,7 @@
 class Search extends React.Component {
   constructor(props) {
     super(props);
+    
     this.state = {
       inputQuery: '',
     };
@@ -18,7 +19,7 @@ class Search extends React.Component {
       <div className="search-bar form-inline">
         <input onChange={(e) => this.handleInput(e)} className="form-control" type="text" />
         <button className="btn hidden-sm-down">
-          <span onClick={(e) => props.handleSearch(console.log(JSON.stringify(this)))} className="glyphicon glyphicon-search"></span>
+          <span onClick={(e) => this.props.handleSearch(this.state.inputQuery)} className="glyphicon glyphicon-search"></span>
         </button>
       </div> 
     );

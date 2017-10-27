@@ -7,12 +7,16 @@ class App extends React.Component {
       video: exampleVideoData[0],
       videos: exampleVideoData
     };
-    this.handleSearch('rick roll');//, (data) => {
+    //, (data) => {
     //   this.setState({
     //     video: data[0],
     //     videos: data,
     //   });
     // });
+  }
+
+  componentDidMount() {
+    this.handleSearch('rickroll');
   }
 
   handleClick(key) {
@@ -23,6 +27,7 @@ class App extends React.Component {
 
   handleSearch(q) {
     this.props.searchYouTube({key: YOUTUBE_API_KEY, query: q, max: 5}, (data) => {
+      console.log('data', data);
       this.setState({
         video: data[0],
         videos: data,
