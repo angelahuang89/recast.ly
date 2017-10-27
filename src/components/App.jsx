@@ -7,12 +7,6 @@ class App extends React.Component {
       video: exampleVideoData[0],
       videos: exampleVideoData
     };
-    //, (data) => {
-    //   this.setState({
-    //     video: data[0],
-    //     videos: data,
-    //   });
-    // });
   }
 
   componentDidMount() {
